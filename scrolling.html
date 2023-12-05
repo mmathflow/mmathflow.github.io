@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Post Carousel</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/css/glide.core.min.css">
+<style>
+.glide__arrow {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.glide__arrow--left {
+  left: 0;
+}
+.glide__arrow--right {
+  right: 0;
+}
+</style>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto py-10">
+  <div class="glide">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        <!-- Placeholder cards with random images -->
+        <li class="glide__slide">
+          <a href="#">
+            <img src="https://source.unsplash.com/random/300x200?sig=1" alt="Blog Post" class="rounded-lg shadow-lg">
+          </a>
+        </li>
+        <li class="glide__slide">
+          <a href="#">
+            <img src="https://source.unsplash.com/random/300x200?sig=2" alt="Blog Post" class="rounded-lg shadow-lg">
+          </a>
+        </li>
+        <li class="glide__slide">
+          <a href="#">
+            <img src="https://source.unsplash.com/random/300x200?sig=3" alt="Blog Post" class="rounded-lg shadow-lg">
+          </a>
+        </li>
+        <!-- Add more slides as needed -->
+      </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+  new Glide('.glide', {
+    type: 'carousel',
+    startAt: 0,
+    perView: 3,
+    gap: 16,
+    breakpoints: {
+      1024: {
+        perView: 2
+      },
+      768: {
+        perView: 1
+      }
+    }
+  }).mount();
+</script>
+</body>
+</html>
