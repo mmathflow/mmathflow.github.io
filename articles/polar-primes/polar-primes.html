@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Article | MathFlow</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="stylesheet" href="../article-style.css">
+
+    <link rel="icon" href="../../assets/earth_africa.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body style="background-color: #F3F4F6">
+    <!-- BACK TO TOP BUTTON -->
+    <a href="#" class="back-to-top">
+      <span class="material-icons">arrow_upward</span>
+    </a>
+
+    <h1 id="global-name" onclick="window.location.href='../../index.html'">MathFlow</h1>
+    <div id="global-name-line"></div>
+
+
+    <h2 id="article-name">🐻‍❄️ Polar Primes</h2>
+
+    <div id="article-content">
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> What is the Polar Coordinate System?</h2>
+      </div>
+      <p class="content-text">
+        In the Cartesian coordinate system on a plane every point has a unique pair of coordinates - the distances between the point and the axes. The
+        Polar coordinate system also has two coordinates - <i>(r, θ)</i>. <i>R</i> is the radius from the center to the point, and <i>θ</i> (sometimes - <i>φ</i>) is the directed angle between the point and the positive X axis ray (counter-clockwise). Later on, angle <i>θ</i> will be measured in radians.
+      </p>
+      <div style="text-align: center;">
+        <img src="../../assets/Polar_graph_paper.svg.png">
+        <img src="../../assets/Examples_of_Polar_Coordinates.svg.png">
+      </div>
+      <p class="content-text">
+        A conversion from Polar coordinates to Cartesian is easily done:
+      </p>
+
+        <div class="cmath">`x, y = cos(θ) * r, sin(θ) * r`</div>
+        <br>
+        <div style="text-align: center;">
+          <img src="../../assets/Polar_to_cartesian.svg.png">
+        </div>
+        <br>
+        <div class="section-name" style="text-align: center;">
+          <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> Adding all natural numbers to the Polar plane</h2>
+        </div>
+
+        <p class="content-text">
+          Lets mark all points of the Polar plane which have the same two coordinates:
+        </p>
+        <div class="cmath">`r = θ`</div>
+        <br>
+        <div style="text-align: center;">
+          <img src="../../assets/Polar_all.gif" alt="" width=60%>
+        </div>
+        <br>
+
+        <p class="content-text">
+          We already see something very interesting!
+        </p>
+        <p class="content-text">
+          First - we see six spirals. Why is that? Well, lets define a spiral: a spiral is a group of points (<i>A</i>), where the difference in angle and radius of two nearby points are constants.
+        </p>
+        <div class="cmath">`r_(A_i) - r_(A_(i + 1)) = Delta r_A = \text{const}`</div>
+        <div class="cmath">`θ_(A_i) - θ_(A_(i + 1)) = Delta θ_A = \text{const}`</div>
+        <p class="content-text">
+          Our brain separates the most dense and straight spirals from each other. We see six of them because for every sixth point the difference in angle is 6 radians, which is close to a 360° (2π) turn.
+        </p>
+        <div class="cmath">`abs(2 * pi - 6) ≈ 0.28318530718 = Delta θ_A`</div>
+
+        <p class="content-text">
+          After that, if you count, we see exactly 44 spirals. That is, again, because a turn on 44 radians is really closy to a 360° (2π) turn.
+        </p>
+        <div class="cmath">`abs(2 * pi * 7  - 44) ≈ 0.01770284974 = Delta θ_A`</div>
+
+        <p class="content-text">
+          Finally, the density of the points on the screen becomes so large, that we stop being able to recognize anything. Keep in mind, that the camera is zooming out in an exponent: the area of the screen multiplies by 10.000 every 10 seconds!
+        </p>
+
+        <div class="section-name" style="text-align: center;">
+          <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> Adding all prime numbers to the Polar plane</h2>
+        </div>
+
+
+        <p class="content-text">
+          Now we will remove all of the composite numbers and see what'll happen!
+        </p>
+
+        <div style="text-align: center;">
+          <img src="../../assets/Polar_Primes.gif" alt="Gif of prime numbers on a polar plane" width=60%>
+        </div>
+
+        <p class="content-text">
+          It's fascinating! First we see two small spirals, then we recognize two large ones which are very similar to Milky Way's spirals, then we see many rays facing the center like giant intergalactic traffic roads heading to a big planet-city, when finally they turn into bright yellow tails and become the Sun!
+          The secret of beauty behind this phenomena is quite similar to the previous one.
+        </p>
+        <p class="content-text">
+          Lets imagine the six spirals which we had at the start last time, their coordinates had the view of:
+        </p>
+        <div class="cmath">`A_i = i = 6 * k + 0  => i mod 6 = 0`</div>
+        <div class="cmath">`A_i = i = 6 * k + 1  => i mod 6 = 1`</div>
+        <div class="cmath">`A_i = i = 6 * k + 2  => i mod 6 = 2`</div>
+        <div class="cmath">`A_i = i = 6 * k + 3  => i mod 6 = 3`</div>
+        <div class="cmath">`A_i = i = 6 * k + 4  => i mod 6 = 4`</div>
+        <div class="cmath">`A_i = i = 6 * k + 5  => i mod 6 = 5`</div>
+
+        <p class="content-text">
+          The numbers with a remainder of 0, 2, 3, 4 will not be prime, becouse they share a divisor with 6, therefore having a divisor (whic is less than <i>i</i> and more than 1).
+        </p>
+        <div class="cmath">`i = 6 * k + 0 = 2 * 3 * k`</div>
+        <div class="cmath">`i = 6 * k + 2 = 2 * (k + 1)`</div>
+        <div class="cmath">`i = 6 * k + 3 = 3 * (k + 1)`</div>
+        <div class="cmath">`i = 6 * k + 4 = 2 * (k + 2)`</div>
+
+        <p class="content-text">
+          That is why we see only two spirals - the numbers with remainders 1 and 5 from 6. Later we see two giant spiral clusters with small gaps inside. They are, of course, the spirals which are left from the 44 starting ones. The remainders 0, 2, 4, 6, 8, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 33, 34, 36, 38, 40, 42 are non-exisant anymore, leaving only 20 spirals.
+        </p>
+
+        <p class="content-text">
+          And as you may guess, the intergalactic traffic is also just spirals, numbers of which have coprime remainders of 710.
+        </p>
+        <div style="text-align: center;">
+          <img src="../../assets/new.gif" alt="" width=60%>
+          <img src="../../assets/new2.gif" alt="" width=60%>
+        </div>
+        <p class="content-text">
+          The last thing you might ask is why do all left spirals have pretty much the same amount of points in them? Refrazing, that statement would look like this:
+        </p>
+        <br>
+        <div class="cmath">`∃ l, k ∈ \mathbb N; GCD(l, k) = 1: \text{ There is an infinite amount of prime numbers } p \text{, which have the form of } p ≡ l\text{ (mod }k)`</div>
+        <br>
+        <p class="content-text">
+          And now this is Dirichlet's theorem on arithmetic progressions, one of the most fundemental theorems of Number Theory!
+        </p>
+
+        <p class="content-text">
+          All this is another proof that simple math can be beautiful whenever you least expect it! To be continued with some interactive parts...
+        </p>
+
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> Links</h2>
+      </div>
+
+      <button class="button-link">
+        GitHub
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://github.com/FIrEwaFfFLe/Polar_Primes">https://github.com/FIrEwaFfFLe/Polar_Primes</a>
+      <br>
+      <br>
+      <button class="button-link">
+        Wikipedia
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://en.wikipedia.org/wiki/Dirichlet%27s_theorem_on_arithmetic_progressions">https://en.wikipedia.org/wiki/Dirichlet%27s_theorem_on_arithmetic_progressions</a>
+      <br>
+      <br>
+      <button class="button-link">
+        Original post
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://math.stackexchange.com/questions/885879/meaning-of-rays-in-polar-plot-of-prime-numbers/885894">https://math.stackexchange.com/questions/885879/meaning-of-rays-in-polar-plot-of-prime-numbers/885894</a>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <script src="../linenumber.js"></script>
+
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/MathJax.js?config=AM_CHTML"> </script>
+  </body>
+</html>

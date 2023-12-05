@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stacking Game</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+  #stacking-area {
+    position: relative;
+    height: 300px;
+    background-color: #f3f4f6;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .block {
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background-color: #60a5fa;
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid black;
+    z-index: 1;
+  }
+  #center-of-mass {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    border-left: 2px dashed #C44242;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+</style>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto p-4">
+  <div class="flex justify-center space-x-4 mb-4">
+    <button id="add-block" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Add Block
+    </button>
+    <button id="recalculate" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+      Recalculate
+    </button>
+    <button id="clear" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+      Clear
+    </button>
+  </div>
+  <div id="stacking-area">
+    <div id="center-of-mass"></div>
+  </div>
+</div>
+
+<script>
+  function extractNumber(pxString) {
+    // Use parseInt to extract the numeric value
+    // parseInt will stop parsing when it encounters a non-numeric character
+    const numericValue = parseInt(pxString, 10);
+
+    // Check if the result is a valid number
+    if (!isNaN(numericValue)) {
+        return numericValue;
+    } else {
+        // Handle the case when the input is not a valid number
+        console.error("Invalid input: " + pxString);
+        return null;
+    }
+  }
+
+  const stackingArea = document.getElementById('stacking-area');
+  const centerOfMassLine = document.getElementById('center-of-mass');
+  let blocks = [];
+  let currentLayer = 0;
+
+  document.getElementById('clear').addEventListener('click', function() {
+    blocks = [];
+    currentLayer = 0;
+    document.querySelectorAll('.block').forEach(function(element) {
+        element.remove();
+    });
+  });
+
+  document.getElementById('add-block').addEventListener('click', function() {
+    const block = document.createElement('div');
+    block.className = 'block';
+    block.style.bottom = `${currentLayer * 20}px`;
+    block.style.left = `${(stackingArea.clientWidth - 100) / 2}px`;
+    block.dataset.layer = currentLayer;
+    stackingArea.appendChild(block);
+    blocks.push(block);
+    currentLayer++;
+    attachBlockEvents(block);
+  });
+
+  document.getElementById('recalculate').addEventListener('click', function() {
+    console.log(blocks);
+    let sum = 0;
+    for (let i = 0; i < blocks.length; i++) {
+      let v = extractNumber(blocks[i].style.left);
+      v += 50;
+      console.log(`position = ${v}`);
+      sum += extractNumber(v);
+    }
+    sum /= (blocks.length);
+    console.log(sum);
+    console.log(centerOfMassLine);
+    centerOfMassLine.style.left = `${sum}px`;
+
+    // Placeholder for recalculate functionality
+    // This should reposition the center of mass line based on the blocks' positions
+  });
+
+  function attachBlockEvents(block) {
+    block.addEventListener('mousedown', function(event) {
+      const currentBlockLayer = parseInt(event.target.dataset.layer, 10);
+      if (currentBlockLayer !== currentLayer - 1) return;
+
+      const startX = event.clientX;
+      const startLeft = parseInt(event.target.style.left, 10);
+      function onMouseMove(e) {
+        const currentX = e.clientX;
+        const deltaX = currentX - startX;
+        const newLeft = startLeft + deltaX;
+        if (newLeft >= 0 && newLeft <= stackingArea.clientWidth - 100) {
+          event.target.style.left = `${newLeft}px`;
+        }
+      }
+      function onMouseUp() {
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+      }
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    });
+  }
+</script>
+</body>
+</html>
+

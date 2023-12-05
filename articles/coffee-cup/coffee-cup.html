@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Article | MathFlow</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="stylesheet" href="../article-style.css">
+
+    <link rel="icon" href="../../assets/earth_africa.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <!-- BACK TO TOP BUTTON -->
+    <a href="#" class="back-to-top">
+      <span class="material-icons">arrow_upward</span>
+    </a>
+
+    <h1 id="global-name" onclick="window.location.href='../../index.html'">MathFlow</h1>
+    <div id="global-name-line"></div>
+
+
+    <h2 id="article-name">Coffee Cups</h2>
+
+    <div id="article-content">
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> How does tempurature change?</h2>
+      </div>
+
+      <p class="content-text">
+      The goal for today is to predict the temperature of a coffee cup in the future. First, we should understand how the temperature changes. Imagine a cup 100 ℃ hot, and the room temperature is 23 ℃. The coffee cup should cool down quickly. Now imagine the coffee cup is only 30 ℃ hot; well then, intuitively, the temperature should change slower. So we can say that intuitively, we get the following.
+      </p>
+
+      <div class="cmath">
+        `\frac{dT}{dt} = -k(T - A)`
+      </div>
+
+      <p class="content-text">
+        A is the room temperature, and T is the coffee cup temperature. This is a simple differential equation. Let us solve it.
+      </p>
+
+      <div class="cmath">
+        `\frac{dT}{dt} = -k(T - A)`<br>
+        `\frac{1}{T - A}dT = -k \cdot dt`<br>
+        `\int \frac{1}{T - A}dT = -\int k \cdot dt` <br>
+        `ln |T - A| = -kt + C` <br>
+        `T - A = e^C e^{-kt} = De^{-kt}`
+      </div>
+
+      <p class="content-text">
+      Now that we know the solution to the differential equation, we must find the values of D and k. To find D, let's use our initial conditions.
+      </p>
+
+      <div class="cmath">
+        `T - A = De^{0} = D`
+      </div>
+
+      <p class="content-text">
+      Now that we know the value of D let us find k. Let us make one more measurement after 5 minutes, then
+      </p>
+
+      <div class="cmath">
+        `T - A = De^{-5k}`<br>
+        `-5k = ln(\frac{T - A}{D})`<br>
+        `k = -\frac{ln(\frac{T - A}{D})}{5}`
+      </div>
+
+      <p class="content-text">
+      And we are done! Now, we can predict the temperature of the coffee cup as far into the future as we want.
+      </p>
+
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> Does this work?</h2>
+      </div>
+
+      <p class="content-text">
+      This formula interested me, so I experimented and checked the procedure. I made myself a cup of coffee, went outside, and started measuring. Here is the data I collected.
+      </p>
+
+      <table class="random-table">
+        <tr>
+          <th></th>
+          <th>Time</th>
+          <th>Tempurature (&#x2103;)</th>
+        </tr>
+        <tr>
+          <th>Measurement 1</th>
+          <td>0</td>
+          <td>37.8</td>
+        </tr>
+        <tr>
+          <th>Measurement 2</th>
+          <td>2 min 30 sec</td>
+          <td>35.2</td>
+        </tr>
+        <tr>
+          <th>Measurement 3</th>
+          <td>4 min 30 sec</td>
+          <td>33.7</td>
+        </tr>
+        <tr>
+          <th>Measurement 4</th>
+          <td>6 min 20 sec</td>
+          <td>32.5</td>
+        </tr>
+        <tr>
+          <th>Measurement 5</th>
+          <td>7 min 15 sec</td>
+          <td>31.8</td>
+        </tr>
+      </table>
+
+      <p class="content-text">
+      The temperature outside at that time was about 8 ℃. Now, does this follow the predictions? Let us plot everything.
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/temp-graph.png" alt="" width=30%>
+      </div>
+
+      <p class="content-text">
+      The red points are the collected data, and the blue curve is the prediction. Perfect! That is an almost ideal prediction. If you zoom in, you will start seeing some errors.
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/closer-graph.png" alt="" width=30%>
+      </div>
+
+      <p class="content-text">
+      The error comes only from the margin of error of the timing and the thermometer. However, the general trend is predicted correctly. Using this formula you can predict how a tempurature of any object will change over time.
+      </p>
+    
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> Links</h2>
+      </div>
+
+      <button class="button-link">
+        GitHub Gist
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://gist.github.com/MrMineev/20571754585cf475072468acd3348d00">https://gist.github.com/MrMineev/20571754585cf475072468acd3348d00</a>
+      <br>
+      <br>
+      <button class="button-link">
+        Wikipedia
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://www.wikiwand.com/en/Newton%27s_law_of_cooling">https://www.wikiwand.com/en/Newton%27s_law_of_cooling</a>
+      <br>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <script src="../linenumber.js"></script>
+
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/MathJax.js?config=AM_CHTML"> </script>
+  </body>
+</html>
+
+

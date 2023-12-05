@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Article | MrMineev </title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="stylesheet" href="../article-style.css">
+
+    <link rel="icon" href="../../assets/squid.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <!-- BACK TO TOP BUTTON -->
+    <a href="#" class="back-to-top">
+      <span class="material-icons">arrow_upward</span>
+    </a>
+
+    <h1 id="global-name" onclick="window.location.href='../../index.html'">MathFlow</h1>
+    <div id="global-name-line"></div>
+
+    
+    <h2 id="article-name">🦑 Harmonic Series</h2>
+    
+    <div id="article-content">
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> What is the Harmonic Series?</h2>
+      </div>
+      <p class="content-text">
+        The harmonic series, is an infinite sum of the reciprocals of integers.
+      </p>
+      <div class="cmath">
+        `\Sigma_{i=1}^{\infty} \frac{1}{i} = \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + ...`
+      </div>
+      <p class="content-text">
+        Does this converge? This is what I will be covering in this post.
+      </p>
+
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> The Simplest Proof</h2>
+      </div>
+
+      <p class="content-text">
+        First, we should notice the following.
+        Replace all the denominators with the next largest power of two, then the resulting series is smaller than the original.
+        This is simple to say, as all the denominators are now bigger or equal to the original, the values of the fractions must be less or equal than the original.
+      </p>
+
+      <div class="cmath">
+        `\frac{1}{1} + \frac{1}{2} + \frac{1}{3} + ... > \frac{1}{1} + \frac{1}{2} + \frac{1}{4} + \frac{1}{4} + \frac{1}{8} + ...`
+      </div>
+
+      <p class="content-text">
+        Now notice that the fraction 1/(2^n) repeats exactly 2^(n - 1).
+        This is easily seen if you look at the previous fraction 1/(2^(n-1)).
+        It has the last fraction of this form for the number 1/(2^(n-1)).
+        What about the fraction 1/(2^n), well the last fraction of this form is 1/(2^n).
+        Knowing this we conclude the number of fractions of the form 1/(2^n) must be the difference between 2^(n-1) and 2^n.
+      </p>
+
+      <div class="cmath">
+        `2^{n} - 2^{n - 1} = 2^{n-1} \cdot (2 - 1) = 2^{n-1}`
+      </div>
+
+      <p class="content-text">
+        Now going back to the harmonic series, let us group all fractions that are the same. Then notice the following.
+      </p>
+
+      <div class="cmath">
+        `\frac{1}{2} = \frac{1}{2}`
+      </div>
+      <div class="cmath">
+        `\frac{1}{4} + \frac{1}{4} = \frac{1}{2}`
+      </div>
+      <div class="cmath">
+        `\frac{1}{8} + \frac{1}{8} + \frac{1}{8} + \frac{1}{8} = \frac{1}{2}`
+      </div>
+      <div class="cmath">
+        `...` 
+      </div>
+
+      <p class="content-text">
+        Meaning all the groups, have the same sum which is 1/2.
+      </p>
+
+      <div class="cmath">
+        `\frac{1}{1} + \frac{1}{2} + \frac{1}{3} + ... > \frac{1}{1} + \frac{1}{2} + \frac{1}{4} + \frac{1}{4} + \frac{1}{8} + ... = 1 + \frac{1}{2} + \frac{1}{2} + ...`
+      </div>
+
+      <p class="content-text">
+        Notice the last expression diverges, this means the original sum the harmonic series also diverges.
+      </p>
+
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> Approximating the Harmonic Series</h2>
+      </div>
+      
+      <p class="content-text">
+        We can quickly approximate the harmonic series by noticing the following.
+      </p>
+
+      <div class="cmath">
+        `\frac{1}{1} + \frac{1}{2} + ... + \frac{1}{n} ~ \int_{1}^{n} dx/x`
+      </div>
+
+      <p class="content-text">
+        And we know that this integral is just the natural logarithm.
+      </p>
+
+      <div class="cmath">
+        `\int_{1}^{n} dx/x = \ln x`
+      </div>
+
+      <p class="content-text">
+        So we can just approximate the harmonic series with a natural logarithm. You can make a better approximation if you also use the Euler–Mascheroni constant (this is left for the reader to look in to).
+      </p>
+
+      <p></p>
+
+      <p class="content-text">
+        Also this approximation also proves the original statement. Because we know the following. 
+      </p>
+
+      <div class="cmath">
+        `\frac{1}{1} + \frac{1}{2} + ... + \frac{1}{n} > \int_{1}^{n} dx/x = \ln x`
+      </div>
+
+      <p class="content-text">
+        And we know that the natural logarithm diverges, meaning the harmonic series also diverge.
+      </p>
+
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> Stacking Bricks</h2>
+      </div>
+
+      <p></p>
+
+      <p class="content-text">Using the fact that the harmonic series diverge, let us play a game, a stacking game.</p>
+
+      <div style="text-align: center;">
+        <iframe src="playground.html" width="80%" height="400" frameborder="0"></iframe>
+      </div>
+      
+      <p class="content-text">
+      In this game you can place a new block by pressing the "Add" button, and then you can move the block around.
+      Now you don't want the system to fall, so you need the center of mass to not exceed the first block borders.
+      To recalculate the center of mass line just press the "Recalculate" button.
+      To clear everything press "Clear".
+      Using the fact that the harmonic series diverges we can say for certain that we can extend the blocks as far to the side as we want without the system collapsing.
+      Here is how to do this.
+      </p>
+     
+      <div style="text-align: center;">
+        <img src="../../assets/blocks_game.png" alt="Description of the image" height="200px;">
+      </div>
+
+      <p class="content-text">
+      You can simply check that this construction works, this is left as an excersise.
+      </p>
+
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> Links</h2>
+      </div>
+      
+      <button class="button-link">
+        Wikipedia
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)">https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)</a>
+
+      <br><br>
+
+      <button class="button-link">
+        mathscareers.org.uk
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://www.mathscareers.org.uk/the-infinite-block-stacking-problem-or-the-leaning-tower-of-lire/">https://www.mathscareers.org.uk/the-infinite-block-stacking-problem-or-the-leaning-tower-of-lire/</a>
+          </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    
+    <script src="../linenumber.js"></script>
+
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/MathJax.js?config=AM_CHTML"> </script>
+  </body>
+</html>
+
