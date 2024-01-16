@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Article | MathFlow</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="stylesheet" href="../article-style.css">
+
+    <link rel="icon" href="../../assets/neural-icon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body style="background-color: #F3F4F6">
+    <!-- BACK TO TOP BUTTON -->
+    <a href="#" class="back-to-top">
+      <span class="material-icons">arrow_upward</span>
+    </a>
+
+    <h1 id="global-name" onclick="window.location.href='../../index.html'">MathFlow</h1>
+    <div id="global-name-line"></div>
+
+
+    <h2 id="article-name">👾🤖 Neural Networks</h2>
+
+    <div id="article-content">
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> What's a neural network?</h2>
+      </div>
+
+      <p class="content-text">
+        A neural networks is obviously a network of neurons, but what are neurons? The neuron (νεῦρον) translates from ancient greek as "sinew, cord, nerve". Our biological nervous system is in fact also just a "neural network" where we have a lot of neurons 
+        (cells which store information by being active or inactive) connected with each other in various ways. 
+      </p>
+
+      <p class="content-text">
+        In general they connect into "reflex arches" (pathways for neural signals). At the beginning of these arches there are receptor neurons which collect information 
+        from the outer world. That information is passed on to the integrating centers (usually to the spinal chord or to the brain) where it gets processed. Finally it goes to the effector neurons which trigger the muscles.
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/nerve-cell.png" alt="Description of the image" height="420px;">
+      </div>
+
+      <p class="content-text">
+        Neural network work exactly the same way:
+      </p>
+      
+      <div style="text-align: center;">
+        <img src="../../assets/neural-scheme1.png" alt="Description of the image" height="570px;">
+      </div>
+
+      <p class="content-text">
+        Neurons of neighbouring layers are connected. There's an input layer - receptors, hidden layers - integrating centers, output layer - effector neurons.
+      </p>
+      <br>
+
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> How do neural networks work?</h2>
+      </div>
+
+      <p class="content-text">
+        An array of numbers is given into the input layer. That could be a ciphered image, text or anything else. After processing this information the output layer is also an array of numbers. Usually every neuron in the output layer corresponds to 
+        some class, for example - the breed of a dog. And the biggest number from the output (the "brightest" neuron) is what the neural network actually "thinks" (it's "choice") about the input information.
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/neural-scheme2.png" alt="Description of the image" height="500px;">
+      </div>
+
+      <p class="content-text">
+        The connections between neurons are called synapses (as in biology). Each synapse has it's own weight (for the weights we will use the array "w") as in our nervous systems neural connections vary in strength. Every neuron (except the input ones) has a bias 
+        (the array "b") the purposes of which we will explain a little later. To get the number in the next neuron (it's "brightness") you multiply the weights and brightnesses to the previous neurons, add that up and add the bias:
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/neural-scheme3.png" alt="Description of the image" height="585px;">
+      </div>
+
+      <p class="content-text">
+        But that's actually not quite true. There are so called activation functions, which get's applied to the end result. Their main purpose is so that before some point the neuron isn't activated at all and after that point it's active (again, like in our bodies). 
+        And the bias (also called the <b>activation</b> bias) is used to shift that middle point.
+      </p>
+
+      <p class="content-text">
+        These are some common ones: 
+      </p>
+
+      <div class="cmath">`\text{Sigmoid function: } sigma(x) = 1 / (1 + e^(-x))`</div>
+      
+      <div style="text-align: center;">
+        <img src="../../assets/sigmoid.png" alt="Description of the image" height="600px;">
+      </div>
+
+      <div class="cmath">`\text{ReLU (rectified linear unit): } f(x) = x^+ = max(0, x) = (abs(x) + x) / 2`</div>
+
+      <div style="text-align: center;">
+        <img src="../../assets/max(0, x).png" alt="Description of the image" height="600px;">
+      </div>
+
+      <p class="content-text">
+        From now on we'll call the neuron values without the activation function array "z". 
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/neural-scheme4.png" alt="Description of the image" height="540px;">
+      </div>
+
+      <p class="content-text">
+        Therefore here's the full overview:
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/neural-scheme5.png" alt="Description of the image" height="600px;">
+      </div>
+
+      <br>
+
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> How do neural networks train?</h2>
+      </div>
+
+      <p class="content-text">
+        Now to the interesting part!
+      </p>
+
+      <p class="content-text">
+        Imagine we have one training exmaple, we run our network on it. So we have our network's output and the correct output (the array "y").
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/neural-scheme6.png" alt="Description of the image" height="590px;">
+      </div>
+
+      <p class="content-text">
+        We need a way to tell how good or bad the network has worked, we need a cost function. We will use this common one:
+      </p>
+
+      <div class="cmath">`C = (a_{1} - y_{1})^2 + (a_{2} - y_{2})^2 = \Sigma_{i=1}^{n}(a_{i} - y_{i})^2`</div>
+
+      <p class="content-text">
+        The smaller the cost fucntion the better! Essentially for a training example we want to have such weights and biases so that the cost function is the smallest.
+      </p>
+
+      <div class="cmath">`C(w_{1}, w_{2}, ..., b_{1}, b_{2}, ...) -> min`</div>
+
+      <p class="content-text">
+        Now this is just a mathematical problem! To solve it we will use the method of gradient descent. It is used if you need to minimize a multivariable function. You take the partial derivative of each parameter and that actually points to the direction of the steepest slope along
+        that axis (so you step in the opposite direction). It's pluses and why it is used almost everywhere are: when aproaching the local minimum the derivatives get smaller making the steps smaller too (to not go past the minimum); it's relatively easy to code going from the back layers
+        to the front ones calculating derivatives for all parameters along the way.
+      </p>
+
+      <p class="content-text">
+        For educational purposes we will look at a simplified network:
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/neural-scheme7.png" alt="Description of the image" height="140px;">
+      </div>
+      <br>
+      <br>
+
+      <div class="cmath">`\text{Our function: } C(w_{1}, w_{2}, w_{3}, b_{1}, b_{2}, b_{3})`</div>
+      <br>
+      <div class="cmath">`\text{The gradient is the vector of the direction to the steepest slope: } ∇C`</div>
+      <br>
+      <div class="cmath">`\text{It's consists of all the partial derivatives of the function's paramteres: } \mathbf{∇C} = ((dC) / (dw_{1}), (dC) / (dw_{2}), (dC) / (dw_{3}), (dC) / (db_{1}), (dC) / (db_{2}), (dC) / (db_{3}))`</div>
+      <br>
+      <div class="cmath">`C = (a_{4} - y)^2 \text{, so the derivative is } \mathbf{(dC)/(da_{4})} = 2a_{4}-2y`</div>
+      <br>
+      <div class="cmath">`\text{A big role plays the chain rule: } a_{4} = \sigma(z_{4}) \text{, so } \mathbf{(dC)/(dz_{4})} = (dC)/(da_{4}) * (da_{4})/(dz_{4}) = (2a_{4}-2y) * \sigma'(z_{4})`</div>
+      <br>
+      <div class="cmath">`z_{4} = a_{3} * w_{3} + b_{3} \text{ } \mathbf{(dC)/(db_{3})}=(dC)/(dz_{4}) * (dz_{4})/(db_{3})=(2a_{4}-2y) * \sigma'(z_{4}) * 1 \text{ } \mathbf{(dC)/(dw_{3})}=(dC)/(dz_{4}) * (dz_{4})/(dw_{3})=(2a_{4}-2y) * \sigma'(z_{4}) * a_{3}`</div>
+      <br>
+      <div class="cmath">`\mathbf{(dC)/(da_{3})}=(dC)/(dz_{4}) * (dz_{4})/(da_{3})=(2a_{4}-2y) * \sigma'(z_{4}) * w_{3}`</div>
+      <br>
+      <div class="cmath">`\text{And the process continues till the end, so:}`</div>
+      <br>
+      <div class="cmath">`∇C = (…, …, (2a_{4}-2y) * \sigma'(z_{4}) * a_{3}, …, …, (2a_{4}-2y) * \sigma'(z_{4}))`</div>
+      <br>
+      <div class="cmath">`\text{Therefore from the point }(w_{1}, w_{2}, w_{3}, b_{1}, b_{2}, b_{3})\text{ in multidimensional space we go to }(w_{1}, w_{2}, w_{3}, b_{1}, b_{2}, b_{3}) - ∇C`</div>
+      <br>
+      <br>
+
+      <p class="content-text">
+        This might seem very messy but in a computer even with hundreds of neurons all these formulas are just numbers which it stores and does the calculations relatively to the last layer (where everything's already calculated).
+      </p>
+
+      <p class="content-text">
+        You can see the graphical visualization in 2D and 3D (with 1 and 2 parameters respectively):
+      </p>
+
+      <div style="text-align: center;">
+        <img src="../../assets/neural-2D-1.png" alt="Description of the image" height="400px;">
+        <img src="../../assets/neural-3D-1.png" alt="Description of the image" height="400px;">
+      </div>
+      <div style="text-align: center;">
+        <img src="../../assets/neural-2D-2.png" alt="Description of the image" height="400px;">
+        <img src="../../assets/neural-3D-2.png" alt="Description of the image" height="400px;">
+      </div>
+      <div style="text-align: center;">
+        <img src="../../assets/neural-2D-3.png" alt="Description of the image" height="400px;">
+        <img src="../../assets/neural-3D-3.png" alt="Description of the image" height="400px;">
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+      <p class="content-text">
+        And that's really the whole process behind neural networks! By reading this the number of people who know the actual process behind the AI magic, the world if so full of these days, has gone up by one!
+      </p>
+
+      <br>
+
+      <div class="section-name" style="text-align: center;">
+        <h2 style="display: inline;" class="symbol-change">§</h2><h2 style="display: inline;"> Links</h2>
+      </div>
+      
+      <button class="button-link">
+        Wikipedia on Neural Networks
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://en.wikipedia.org/wiki/Neural_network">https://en.wikipedia.org/wiki/Neural_network</a>
+
+      <br><br>
+
+      <button class="button-link">
+        Wikipedia on Gradient Descent
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://en.wikipedia.org/wiki/Gradient_descent">https://en.wikipedia.org/wiki/Gradient_descent</a>
+
+      <br><br>
+
+      <button class="button-link">
+        YouTube great series by 3Blue1Brown
+      </button>
+      &nbsp;
+      <a rel="noopener noreferrer" target="_blank" class="link" href="https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi</a>
+
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <script src="../linenumber.js"></script>
+
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+    <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/MathJax.js?config=AM_CHTML"> </script>
+  </body>
+</html>
